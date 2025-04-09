@@ -9,13 +9,13 @@ go build -buildmode pie -compiler gc -tags="rpm_crashtraceback libtrust_openssl 
 %endif
 
 %global import_path github.com/containers/%{name}
-#%%global branch release-1.11
-%global commit0 9e29e4cede9bdaa4a54aa5b0af86efedb823bde4
+%global branch release-1.14
+%global commit0 072072bf6e451bbd1e69a40177d047f088eca393
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch: 2
 Name: skopeo
-Version: 1.13.3
+Version: 1.14.5
 Release: 3%{?dist}
 Summary: Inspect container images and repositories on registries
 License: ASL 2.0
@@ -28,7 +28,7 @@ Source0: https://%{import_path}/tarball/%{commit0}/%{branch}-%{shortcommit0}.tar
 Source0: https://%{import_path}/archive/%{commit0}/%{name}-%{version}-%{shortcommit0}.tar.gz
 %endif
 BuildRequires: git-core
-BuildRequires: golang >= 1.20.6
+BuildRequires: golang >= 1.17.7
 BuildRequires: /usr/bin/go-md2man
 BuildRequires: gpgme-devel
 BuildRequires: libassuan-devel
@@ -122,13 +122,63 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %{_datadir}/%{name}/test
 
 %changelog
-* Tue Jan 23 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.13.3-3
-- Make the module buildable again
-- Resolves: RHEL-16299
+* Mon Aug 05 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-3
+- rebuild for  golang fixes
+- Related: RHEL-28452
 
-* Mon Dec 04 2023 Lokesh Mandvekar <lsm5@redhat.com> - 2:1.13.3-2
-- Rebuild with golang 1.20.10 for CVE-2023-39321
-- Related: Jira:RHEL-4517
+* Thu Aug 01 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-2
+- rebuild for  golang fixes
+- Related: RHEL-28452
+
+* Wed Jul 17 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-1
+- update to the latest content of https://github.com/containers/skopeo/tree/release-1.14
+  (https://github.com/containers/skopeo/commit/072072b)
+- Resolves: RHEL-40801
+
+* Fri Jun 21 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.4-2
+- rebuild for CVE-2024-24786
+- Resolves: RHEL-24297
+
+* Thu Jun 13 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.4-1
+- update to the latest content of https://github.com/containers/skopeo/tree/release-1.14
+  (https://github.com/containers/skopeo/commit/78d9c9a)
+- Resolves: RHEL-40852
+
+* Fri Apr 19 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.3-2
+- update to the latest content of https://github.com/containers/skopeo/tree/release-1.14
+  (https://github.com/containers/skopeo/commit/5f2b9af)
+- Resolves: RHEL-28728
+
+* Mon Apr 01 2024 Lokesh Mandvekar <lsm5@redhat.com> - 2:1.14.3-1
+- update to the latest content of https://github.com/containers/skopeo/tree/release-1.14
+  (https://github.com/containers/skopeo/commit/4a2bc3a)
+- Resolves: RHEL-28226
+
+* Mon Mar 18 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.3-0.2
+- update to the latest content of https://github.com/containers/skopeo/tree/release-1.14
+  (https://github.com/containers/skopeo/commit/d0a0f1a)
+- Resolves: RHEL-28226
+
+* Fri Feb 02 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.3-0.1
+- update to the latest content of https://github.com/containers/skopeo/tree/release-1.14
+  (https://github.com/containers/skopeo/commit/1c2ab99)
+- Related: Jira:RHEL-2110
+
+* Wed Jan 31 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.1-2
+- Switch to the maint branch
+- Related: Jira:RHEL-2110
+
+* Fri Jan 19 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.1-1
+- update to https://github.com/containers/skopeo/releases/tag/v1.14.1
+- Related: Jira:RHEL-2110
+
+* Tue Jan 02 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.0-2
+- update to latest content of https://github.com/containers/skopeo/releases/tag/1.14.0
+  (https://github.com/containers/skopeo/commit/6abf96bb82666fbb3d4ad9faf1812e5ae2d31a74)
+
+* Thu Dec 07 2023 Lokesh Mandvekar <lsm5@redhat.com> - 2:1.14.0-1
+- update to https://github.com/containers/skopeo/releases/tag/v1.14.0
+- Related: Jira:RHEL-2110
 
 * Fri Aug 25 2023 Jindrich Novy <jnovy@redhat.com> - 2:1.13.3-1
 - update to https://github.com/containers/skopeo/releases/tag/v1.13.3
