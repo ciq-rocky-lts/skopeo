@@ -1,0 +1,12 @@
+diff --git a/go.mod b/go.mod
+index 5e2dd7bdaa8b..b499d14a6659 100644
+--- a/go.mod
++++ b/go.mod
+@@ -1,6 +1,6 @@
+ module github.com/containers/skopeo
+ 
+-go 1.17
++go 1.21.13
+ 
+ require (
+ 	github.com/containers/common v0.51.0
