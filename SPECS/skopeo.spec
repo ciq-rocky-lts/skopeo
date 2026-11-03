@@ -10,13 +10,13 @@ go build -buildmode pie -compiler gc -tags="rpm_crashtraceback libtrust_openssl 
 
 %global import_path github.com/containers/%{name}
 %global branch release-1.14
-%global commit0 072072bf6e451bbd1e69a40177d047f088eca393
+%global commit0 3a559b2d652abdae5cd63f5093d0d110de524499
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Epoch: 2
 Name: skopeo
-Version: 1.14.5
-Release: 3%{?dist}
+Version: 1.14.6
+Release: 5%{?dist}
 Summary: Inspect container images and repositories on registries
 License: ASL 2.0
 URL: https://%{import_path}
@@ -122,6 +122,50 @@ export GOPATH=%{buildroot}/%{gopath}:$(pwd)/vendor:%{gopath}
 %{_datadir}/%{name}/test
 
 %changelog
+* Thu Oct 22 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.6-5
+- Rebuild for CVE-2026-78667 and CVE-2026-111943
+- Resolves: RHEL-278899 RHEL-287580
+
+* Tue Sep 01 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.6-4
+- rebuild with updated Go to fix CVE-2026-42499
+- Resolves: RHEL-241531 RHEL-241899 RHEL-242023 RHEL-242096 RHEL-242216 RHEL-242332 RHEL-251848
+
+* Thu Aug 20 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.6-3
+- rebuild with Go 1.25.11 to fix CVE-2026-33818, CVE-2026-56853, CVE-2026-56858,
+  CVE-2026-56859, CVE-2026-56860, CVE-2026-56862
+
+* Wed May 20 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.6-2
+- Rebuild for CVE-2026-32281
+- Resolves: RHEL-177067
+
+* Thu Apr 30 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.6-1
+- update to 1.14.6 to fix CVE-2026-34986
+- Resolves: RHEL-164976
+
+* Thu Apr 30 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-9
+- rebuild for CVE-2026-34986
+- Resolves: RHEL-164976
+
+* Mon Apr 20 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-8
+- rebuild for CVE-2026-25679
+- Resolves: RHEL-156633
+
+* Tue Feb 17 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-7
+- rebuild for CVE-2025-68121
+- Resolves: RHEL-149267
+
+* Mon Feb 02 2026 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-6
+- rebuild for CVE-2025-61729
+- Resolves: RHEL-140534
+
+* Wed Dec 03 2025 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-5
+- rebuild for CVE-2025-58183
+- Resolves: RHEL-125659
+
+* Tue May 06 2025 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-4
+- rebuild for CVE-2025-22871
+- Resolves: RHEL-89254
+
 * Mon Aug 05 2024 Jindrich Novy <jnovy@redhat.com> - 2:1.14.5-3
 - rebuild for  golang fixes
 - Related: RHEL-28452
